@@ -30,7 +30,41 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char text[100], key[100];
+    int i, j = 0, k;
+
+    printf("Enter plaintext: ");
+    fgets(text, sizeof(text), stdin);
+
+    printf("Enter key: ");
+    scanf("%s", key);
+
+    for (i = 0; text[i] != '\0'; i++) {
+        if (isalpha(text[i])) {
+            k = toupper(key[j % strlen(key)]) - 'A';
+
+            if (isupper(text[i]))
+                text[i] = (text[i] - 'A' + k) % 26 + 'A';
+            else
+                text[i] = (text[i] - 'a' + k) % 26 + 'a';
+
+            j++;
+        }
+    }
+
+    printf("Ciphertext: %s", text);
+
+    return 0;
+}
 
 ## OUTPUT
+<img width="1916" height="837" alt="Screenshot 2026-10-23 091811" src="https://github.com/user-attachments/assets/37580d88-8578-4299-b8e5-c38ade44ebb0" />
+
 
 ## RESULT
+The program was executed and output was verified
